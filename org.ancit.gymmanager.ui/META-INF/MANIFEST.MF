@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: GymManager UI
+Bundle-SymbolicName: org.ancit.gymmanager.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.ancit.gymmanager.ui.Activator
+Bundle-Vendor: Ancit
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.forms,
+ org.ancit.gymmanager.model
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Gym Management
+Bundle-SymbolicName: org.ancit.gymmanager.model
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.ancit.gymmanager.model.Activator
+Bundle-Vendor: Ancit
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: org.ancit.gymmanager.model
