@@ -11,3 +11,5 @@ Require-Bundle: org.eclipse.ui,
  org.ancit.gymmanager.model
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
+Import-Package: com.ibm.wsdl.util,
+ org.apache.commons.lang
