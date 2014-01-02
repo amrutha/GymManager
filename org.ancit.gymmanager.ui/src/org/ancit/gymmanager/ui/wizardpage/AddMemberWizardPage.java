@@ -1,5 +1,7 @@
 package org.ancit.gymmanager.ui.wizardpage;
 
+import javax.print.DocFlavor.URL;
+
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -23,7 +25,7 @@ public class AddMemberWizardPage extends WizardPage {
 	private Text admittedBy;
 	Combo status;
 	Combo combo, combo_1;
-	String[] fileNames;
+	String fileName;
 
 	/**
 	 * Create the wizard.
@@ -63,8 +65,10 @@ public class AddMemberWizardPage extends WizardPage {
 				// ((Object) fileDialog).setAutoUpload( true ); // This API will
 				// change, see below!
 				fileDialog.open();
-				fileNames = fileDialog.getFileNames();
-
+				fileName = fileDialog.getFilterPath()
+						+ System.getProperty("file.separator")
+						+ fileDialog.getFileName();
+				photo.setText(fileName);
 			}
 		});
 		btnAddPhoto.setText("Add Photo");
@@ -72,7 +76,6 @@ public class AddMemberWizardPage extends WizardPage {
 		photo = new Text(startdate, SWT.BORDER);
 		photo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1,
 				1));
-		photo.setText(fileNames.toString());
 
 		Label lblCustomerName = new Label(startdate, SWT.NONE);
 		lblCustomerName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER,

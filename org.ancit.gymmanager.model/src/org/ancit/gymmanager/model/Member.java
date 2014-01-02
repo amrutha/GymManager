@@ -1,8 +1,11 @@
 package org.ancit.gymmanager.model;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.eclipse.swt.graphics.Image;
 
 public class Member extends SuperSaver {
 	/**
