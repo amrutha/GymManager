@@ -24,7 +24,7 @@ public class GymDetailsContentProvider implements IStructuredContentProvider {
 			GymRecord gymRecord = (GymRecord) inputElement;
 			return gymRecord.getMembers().toArray();
 		}
-		
+
 		return new Object[0];
 	}
 

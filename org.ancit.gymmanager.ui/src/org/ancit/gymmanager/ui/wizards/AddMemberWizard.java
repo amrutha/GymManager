@@ -42,11 +42,14 @@ public class AddMemberWizard extends Wizard {
 		String imageURL = page.getPhoto();
 
 		try {
-			BufferedImage imageIO = ImageIO.read(new URL("file:///"+imageURL));
+			BufferedImage imageIO = ImageIO
+					.read(new URL("file:///" + imageURL));
 			ImageIO.write(
 					imageIO,
 					"png",
-					new File(System.getProperty("user.dir")+System.getProperty("file.separator")+"Images"+System.getProperty("file.separator")
+					new File(System.getProperty("user.dir")
+							+ System.getProperty("file.separator") + "Images"
+							+ System.getProperty("file.separator")
 							+ page.getId() + page.getName() + ".jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

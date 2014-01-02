@@ -1,7 +1,5 @@
 package org.ancit.gymmanager.ui.wizardpage;
 
-import javax.print.DocFlavor.URL;
-
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;

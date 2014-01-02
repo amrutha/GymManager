@@ -1,7 +1,5 @@
 package org.ancit.gymmanager.ui.views;
 
-import java.awt.Dimension;
-
 import org.ancit.gymmanager.model.Member;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
