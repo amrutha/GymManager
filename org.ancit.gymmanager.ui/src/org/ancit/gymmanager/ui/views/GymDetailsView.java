@@ -1,6 +1,10 @@
 package org.ancit.gymmanager.ui.views;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import org.ancit.gymmanager.model.GymManager;
+import org.ancit.gymmanager.model.GymRecord;
 import org.ancit.gymmanager.ui.filter.SearchFilter;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
@@ -11,7 +15,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
@@ -19,7 +22,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.part.ViewPart;
 
-public class GymDetailsView extends ViewPart {
+public class GymDetailsView extends ViewPart implements PropertyChangeListener {
 
 	public static final String ID = "org.ancit.gymmanager.ui.views.GymDetailsView"; //$NON-NLS-1$
 	private final FormToolkit formToolkit = new FormToolkit(
@@ -28,6 +31,7 @@ public class GymDetailsView extends ViewPart {
 	private Text txtSearchHere;
 	private TableViewer tableViewer;
 	SearchFilter searchFilter;
+	GymRecord record;
 
 	public GymDetailsView() {
 	}
@@ -59,20 +63,13 @@ public class GymDetailsView extends ViewPart {
 		formToolkit.adapt(composite_2);
 		formToolkit.paintBordersFor(composite_2);
 		sctnNewSection.setClient(composite_2);
-		composite_2.setLayout(new GridLayout(2, false));
-		{
-			Label lblSearchMember = new Label(composite_2, SWT.NONE);
-			lblSearchMember.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER,
-					false, false, 1, 1));
-			formToolkit.adapt(lblSearchMember, true, true);
-			lblSearchMember.setText("Search Member :");
-		}
+		composite_2.setLayout(new GridLayout(1, false));
 
 		txtSearchHere = new Text(composite_2, SWT.BORDER);
 		txtSearchHere.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				searchFilter.setSearch(txtSearchHere.getText().toString());
+				searchFilter.setSearch(txtSearchHere.getText().toLowerCase());
 				tableViewer.refresh();
 			}
 		});
@@ -156,8 +153,9 @@ public class GymDetailsView extends ViewPart {
 		getSite().setSelectionProvider(tableViewer);
 		tableViewer.setContentProvider(new GymDetailsContentProvider());
 		tableViewer.setLabelProvider(new GymDetailsLabelProvider());
-		GymManager manager = GymManager.getGymManager();
-		tableViewer.setInput(manager.getRecord());
+		record = GymManager.getGymManager().getRecord();
+		record.addPropertyChangeListeners(this);
+		tableViewer.setInput(record);
 		searchFilter = new SearchFilter();
 		tableViewer.addFilter(searchFilter);
 
@@ -165,6 +163,15 @@ public class GymDetailsView extends ViewPart {
 
 	@Override
 	public void setFocus() {
+
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent arg0) {
+		// TODO Auto-generated method stub
+		if (arg0.getPropertyName().equals("GymRecordAdded")) {
+			tableViewer.refresh();
+		}
 
 	}
 

@@ -1,7 +1,6 @@
 package org.ancit.gymmanager.ui.filter;
 
 import org.ancit.gymmanager.model.Member;
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
@@ -16,11 +15,8 @@ public class SearchFilter extends ViewerFilter {
 			if (searchText == null || searchText.length() == 0) {
 				return true;
 			}
-			if ((StringUtils.containsIgnoreCase(member.getId(), searchText))
-					|| (StringUtils.containsIgnoreCase(member.getName(),
-							searchText))
-					|| (StringUtils.containsIgnoreCase(member.getMobileNo(),
-							searchText))) {
+			if (member.getName().toLowerCase().contains(searchText)
+					|| member.getMobileNo().toLowerCase().contains(searchText)) {
 				return true;
 			}
 

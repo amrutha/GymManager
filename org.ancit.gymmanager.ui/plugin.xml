@@ -22,5 +22,25 @@
             name="Member Details">
       </view>
    </extension>
+   <extension
+         point="org.eclipse.ui.viewActions">
+      <viewContribution
+            id="org.ancit.gymmanager.ui.views.MemberDetailsView"
+            targetID="org.ancit.gymmanager.ui.views.MemberDetailsView">
+         <menu
+               id="org.ancit.gymmanager.ui.memberdetailsmenu"
+               label="Add Member"
+               path="additions">
+         </menu>
+         <action
+               class="org.ancit.gymmanager.ui.actions.AddMemberAction"
+               id="org.ancit.gymmanager.ui.addmemberaction"
+               label="Add Member"
+               menubarPath="org.ancit.gymmanager.ui.memberdetailsmenu/additions"
+               style="push"
+               toolbarPath="additions">
+         </action>
+      </viewContribution>
+   </extension>
 
 </plugin>

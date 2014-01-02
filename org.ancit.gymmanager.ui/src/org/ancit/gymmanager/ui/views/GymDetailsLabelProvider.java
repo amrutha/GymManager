@@ -28,12 +28,12 @@ public class GymDetailsLabelProvider extends LabelProvider implements
 			break;
 			case 2: val = member.getMobileNo();
 			break;
-			case 3: val = member.getLastPlanDetails().getStartDate().toString();
-			break;
-			case 4: val = member.getLastPlanDetails().getEndDate().toString();
-			break;
-			case 5: val = member.getLastPlanDetails().getPlanType();
-			break;
+//			case 3: val = member.getLastPlanDetails().getStartDate().toString();
+//			break;
+//			case 4: val = member.getLastPlanDetails().getEndDate().toString();
+//			break;
+//			case 5: val = member.getLastPlanDetails().getPlanType();
+//			break;
 			default: val = "Hello";
 				break;
 			}
