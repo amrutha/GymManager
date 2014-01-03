@@ -10,7 +10,7 @@ public class Member extends SuperSaver {
 	 */
 	private static final long serialVersionUID = -2911686179510229142L;
 
-	private String id = "MEM-";
+	private String id;
 	private String name;
 	private String mobileNo;
 	private String category;
@@ -25,17 +25,24 @@ public class Member extends SuperSaver {
 	List<PlanData> planDetails = new ArrayList<PlanData>();
 	PlanData lastPlanData = new PlanData();
 	private static int count = 1;
-	private int memberId;
 
 	// private String planType;
 	// private String amount;
 	// private int billNo;
 	// private Date startDate;
 	// private Date endDate;
+
+	public static int getCount() {
+		return count;
+	}
+
+	public static void incrementCounter() {
+		count = count + 1;
+
+	}
+
 	public Member() {
 		// TODO Auto-generated constructor stub
-		memberId = count++;
-		id = id + "" + memberId;
 
 	}
 

@@ -25,7 +25,6 @@ public class AddMemberWizardPage extends WizardPage {
 	Combo status;
 	Combo combo, combo_1;
 	String fileName;
-	Member member ;
 	
 
 	/**
@@ -55,8 +54,7 @@ public class AddMemberWizardPage extends WizardPage {
 
 		id = new Text(startdate, SWT.BORDER | SWT.READ_ONLY);
 		id.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		member = new Member();
-		id.setText(member.getId());
+		id.setText("MEM-"+Member.getCount());
 
 		Button btnAddPhoto = new Button(startdate, SWT.NONE);
 		btnAddPhoto.addSelectionListener(new SelectionAdapter() {
@@ -150,10 +148,6 @@ public class AddMemberWizardPage extends WizardPage {
 		// endDate.setText(dateTime.getDay());
 
 	}
-	public Member getMember() {
-		return member;
-	}
-
 	@Override
 	public String getName() {
 		return name.getText();
