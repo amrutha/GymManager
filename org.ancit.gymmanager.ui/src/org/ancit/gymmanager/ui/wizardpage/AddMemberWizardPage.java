@@ -3,6 +3,8 @@ package org.ancit.gymmanager.ui.wizardpage;
 import org.ancit.gymmanager.model.Member;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -25,7 +27,6 @@ public class AddMemberWizardPage extends WizardPage {
 	Combo status;
 	Combo combo, combo_1;
 	String fileName;
-	
 
 	/**
 	 * Create the wizard.
@@ -54,7 +55,7 @@ public class AddMemberWizardPage extends WizardPage {
 
 		id = new Text(startdate, SWT.BORDER | SWT.READ_ONLY);
 		id.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		id.setText("MEM-"+Member.getCount());
+		id.setText("MEM-" + Member.getCount());
 
 		Button btnAddPhoto = new Button(startdate, SWT.NONE);
 		btnAddPhoto.addSelectionListener(new SelectionAdapter() {
@@ -74,7 +75,7 @@ public class AddMemberWizardPage extends WizardPage {
 		});
 		btnAddPhoto.setText("Add Photo");
 
-		photo = new Text(startdate, SWT.BORDER);
+		photo = new Text(startdate, SWT.BORDER | SWT.READ_ONLY);
 		photo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1,
 				1));
 
@@ -85,6 +86,13 @@ public class AddMemberWizardPage extends WizardPage {
 
 		name = new Text(startdate, SWT.BORDER);
 		name.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		name.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent e) {
+				// TODO Auto-generated method stub
+				validate();
+			}
+		});
 
 		Label lblStatus = new Label(startdate, SWT.NONE);
 		lblStatus.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
@@ -96,6 +104,7 @@ public class AddMemberWizardPage extends WizardPage {
 				1));
 		String[] memberStatus = { "Active", "In-Active" };
 		status.setItems(memberStatus);
+		status.select(0);
 
 		Label lblAddress_1 = new Label(startdate, SWT.NONE);
 		lblAddress_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
@@ -105,6 +114,13 @@ public class AddMemberWizardPage extends WizardPage {
 		address = new Text(startdate, SWT.BORDER);
 		address.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
 				1, 1));
+		address.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent e) {
+				// TODO Auto-generated method stub
+				validate();
+			}
+		});
 
 		Label label = new Label(startdate, SWT.NONE);
 		label.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false,
@@ -116,6 +132,7 @@ public class AddMemberWizardPage extends WizardPage {
 				"Yearly" });
 		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1,
 				1));
+		combo.select(0);
 
 		Label lblPhoneNo = new Label(startdate, SWT.NONE);
 		lblPhoneNo.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
@@ -124,6 +141,13 @@ public class AddMemberWizardPage extends WizardPage {
 
 		phNo = new Text(startdate, SWT.BORDER);
 		phNo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		phNo.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent e) {
+				// TODO Auto-generated method stub
+				validate();
+			}
+		});
 
 		Label label_1 = new Label(startdate, SWT.NONE);
 		label_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false,
@@ -134,6 +158,7 @@ public class AddMemberWizardPage extends WizardPage {
 		combo_1.setItems(new String[] { "General", "Student" });
 		combo_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
 				1, 1));
+		combo_1.select(0);
 
 		Label lblAdmittedBy = new Label(startdate, SWT.NONE);
 		lblAdmittedBy.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
@@ -148,6 +173,21 @@ public class AddMemberWizardPage extends WizardPage {
 		// endDate.setText(dateTime.getDay());
 
 	}
+
+	private void validate() {
+		// TODO Auto-generated method stub
+		if (name.getText().equals("")) {
+			setErrorMessage("Enter Member name .");
+		} else if (address.getText().equals("")) {
+			setErrorMessage("Enter Address .");
+		} else if (phNo.getText().equals("")) {
+			setErrorMessage("Enter Phone Number .");
+		} else {
+			setErrorMessage(null);
+		}
+
+	}
+
 	@Override
 	public String getName() {
 		return name.getText();
@@ -185,5 +225,5 @@ public class AddMemberWizardPage extends WizardPage {
 	public String getPhoto() {
 		return photo.getText();
 	}
-	
+
 }

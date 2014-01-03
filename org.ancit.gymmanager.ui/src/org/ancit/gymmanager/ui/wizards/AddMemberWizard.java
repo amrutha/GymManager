@@ -51,7 +51,7 @@ public class AddMemberWizard extends Wizard {
 					new File(System.getProperty("user.dir")
 							+ System.getProperty("file.separator") + "Images"
 							+ System.getProperty("file.separator")
-							+ page.getId() + page.getName() + ".jpg"));
+							+ page.getId() + "_" + page.getName() + ".jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

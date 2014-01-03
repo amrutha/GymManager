@@ -202,7 +202,7 @@ public class MemberDetailsView extends ViewPart implements ISelectionListener {
 								+ System.getProperty("file.separator")
 								+ "Images"
 								+ System.getProperty("file.separator")
-								+ member.getId() + member.getName() + ".jpg");
+								+ member.getId() +"_"+ member.getName() + ".jpg");
 
 				btnPhotoUnavailable.setImage(image);
 
