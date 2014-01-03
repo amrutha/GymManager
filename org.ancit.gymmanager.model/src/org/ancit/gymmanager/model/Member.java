@@ -10,7 +10,7 @@ public class Member extends SuperSaver {
 	 */
 	private static final long serialVersionUID = -2911686179510229142L;
 
-	private String id="MEM-";
+	private String id = "MEM-";
 	private String name;
 	private String mobileNo;
 	private String category;
@@ -24,23 +24,23 @@ public class Member extends SuperSaver {
 	private String photoStatus;
 	List<PlanData> planDetails = new ArrayList<PlanData>();
 	PlanData lastPlanData = new PlanData();
-	private static int count =1;
+	private static int count = 1;
 	private int memberId;
-	
 
-//	private String planType;
-//	private String amount;
-//	private int billNo;
-//	private Date startDate;
-//	private Date endDate;
+	// private String planType;
+	// private String amount;
+	// private int billNo;
+	// private Date startDate;
+	// private Date endDate;
 	public Member() {
 		// TODO Auto-generated constructor stub
-		memberId = count ++;
-		
+		memberId = count++;
+		id = id + "" + memberId;
+
 	}
 
 	public String getId() {
-		return id+""+memberId;
+		return id;
 	}
 
 	public void setId(String id) {
@@ -138,7 +138,6 @@ public class Member extends SuperSaver {
 		this.registrationDate = registrationDate;
 		firePropertyChange("Member", null, this);
 	}
-	
 
 	public String getPhotoStatus() {
 		firePropertyChange("Member", null, this);
@@ -153,65 +152,46 @@ public class Member extends SuperSaver {
 	public List<PlanData> getPlanDetails() {
 		return planDetails;
 	}
-	
+
 	public void setPlanDetails(List<PlanData> planDetails) {
 		firePropertyChange("Member", null, this);
 		this.planDetails = planDetails;
 	}
-	
+
 	public void addToPlanDetails(PlanData planData) {
 		firePropertyChange("Member", null, this);
 		lastPlanData = planData;
 		getPlanDetails().add(lastPlanData);
 	}
-	
-	public PlanData getLastPlanDetails(){
+
+	public PlanData getLastPlanDetails() {
 		return lastPlanData;
-		
+
 	}
 
-/*	public String getPlanType() {
-		return planType;
-	}
-
-	public void setPlanType(String planType) {
-		this.planType = planType;
-		firePropertyChange("Member", null, this);
-	}
-
-	public String getAmount() {
-		return amount;
-	}
-
-	public void setAmount(String amount) {
-		this.amount = amount;
-		firePropertyChange("Member", null, this);
-	}
-	public int getBillNo() {
-		return billNo;
-	}
-
-	public void setBillNo(int billNo) {
-		this.billNo = billNo;
-		firePropertyChange("Member", null, this);
-	}
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-		firePropertyChange("Member", null, this);
-	}
-
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-		firePropertyChange("Member", null, this);
-	}
-*/
+	/*
+	 * public String getPlanType() { return planType; }
+	 * 
+	 * public void setPlanType(String planType) { this.planType = planType;
+	 * firePropertyChange("Member", null, this); }
+	 * 
+	 * public String getAmount() { return amount; }
+	 * 
+	 * public void setAmount(String amount) { this.amount = amount;
+	 * firePropertyChange("Member", null, this); } public int getBillNo() {
+	 * return billNo; }
+	 * 
+	 * public void setBillNo(int billNo) { this.billNo = billNo;
+	 * firePropertyChange("Member", null, this); }
+	 * 
+	 * public Date getStartDate() { return startDate; }
+	 * 
+	 * public void setStartDate(Date startDate) { this.startDate = startDate;
+	 * firePropertyChange("Member", null, this); }
+	 * 
+	 * public Date getEndDate() { return endDate; }
+	 * 
+	 * public void setEndDate(Date endDate) { this.endDate = endDate;
+	 * firePropertyChange("Member", null, this); }
+	 */
 }

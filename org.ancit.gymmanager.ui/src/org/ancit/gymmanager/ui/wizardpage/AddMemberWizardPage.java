@@ -25,6 +25,8 @@ public class AddMemberWizardPage extends WizardPage {
 	Combo status;
 	Combo combo, combo_1;
 	String fileName;
+	Member member ;
+	
 
 	/**
 	 * Create the wizard.
@@ -51,9 +53,9 @@ public class AddMemberWizardPage extends WizardPage {
 				false, 1, 1));
 		lblCustomerId.setText("Customer Id :");
 
-		id = new Text(startdate, SWT.BORDER);
+		id = new Text(startdate, SWT.BORDER | SWT.READ_ONLY);
 		id.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		Member member = new Member();
+		member = new Member();
 		id.setText(member.getId());
 
 		Button btnAddPhoto = new Button(startdate, SWT.NONE);
@@ -91,7 +93,7 @@ public class AddMemberWizardPage extends WizardPage {
 				false, 1, 1));
 		lblStatus.setText("Status :");
 
-		status = new Combo(startdate, SWT.NONE);
+		status = new Combo(startdate, SWT.READ_ONLY);
 		status.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1,
 				1));
 		String[] memberStatus = { "Active", "In-Active" };
@@ -111,7 +113,7 @@ public class AddMemberWizardPage extends WizardPage {
 				1, 1));
 		label.setText("Plan :");
 
-		combo = new Combo(startdate, SWT.NONE);
+		combo = new Combo(startdate, SWT.READ_ONLY);
 		combo.setItems(new String[] { "Monthly", "Quaterly", "Half Yearly",
 				"Yearly" });
 		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1,
@@ -130,7 +132,7 @@ public class AddMemberWizardPage extends WizardPage {
 				1, 1));
 		label_1.setText("Category :");
 
-		combo_1 = new Combo(startdate, SWT.NONE);
+		combo_1 = new Combo(startdate, SWT.READ_ONLY);
 		combo_1.setItems(new String[] { "General", "Student" });
 		combo_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
 				1, 1));
@@ -147,6 +149,9 @@ public class AddMemberWizardPage extends WizardPage {
 		new Label(startdate, SWT.NONE);
 		// endDate.setText(dateTime.getDay());
 
+	}
+	public Member getMember() {
+		return member;
 	}
 
 	@Override
@@ -186,4 +191,5 @@ public class AddMemberWizardPage extends WizardPage {
 	public String getPhoto() {
 		return photo.getText();
 	}
+	
 }

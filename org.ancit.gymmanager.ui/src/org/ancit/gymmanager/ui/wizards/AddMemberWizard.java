@@ -30,7 +30,7 @@ public class AddMemberWizard extends Wizard {
 	@Override
 	public boolean performFinish() {
 
-		Member member = new Member();
+		Member member = page.getMember();
 		member.setName(page.getName());
 		member.setId(page.getId());
 		member.setAddress(page.getAddress());
@@ -38,7 +38,7 @@ public class AddMemberWizard extends Wizard {
 		// member.setPhotoStatus(page.getPhoto());
 		member.setCategory(page.getCategory());
 		member.setIdCardStatus(page.getStatus());
-		member.setPhotoStatus(page.getPhoto());
+//		member.setPhotoStatus(page.getPhoto());
 		String imageURL = page.getPhoto();
 
 		try {
