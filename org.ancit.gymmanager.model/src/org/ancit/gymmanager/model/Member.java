@@ -22,6 +22,7 @@ public class Member extends SuperSaver {
 	private String idCardStatus;
 	private Date registrationDate;
 	private String photoStatus;
+	private String admittedBy;
 	List<PlanData> planDetails = new ArrayList<PlanData>();
 	PlanData lastPlanData = new PlanData();
 	private static int count = 1;
@@ -175,6 +176,15 @@ public class Member extends SuperSaver {
 		return lastPlanData;
 
 	}
+
+	public String getAdmittedBy() {
+		return admittedBy;
+	}
+
+	public void setAdmittedBy(String admittedBy) {
+		this.admittedBy = admittedBy;
+	}
+	
 
 	/*
 	 * public String getPlanType() { return planType; }

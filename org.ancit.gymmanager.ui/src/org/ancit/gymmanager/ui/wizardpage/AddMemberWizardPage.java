@@ -137,7 +137,7 @@ public class AddMemberWizardPage extends WizardPage {
 		Label lblPhoneNo = new Label(startdate, SWT.NONE);
 		lblPhoneNo.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
 				false, 1, 1));
-		lblPhoneNo.setText("Phone No :");
+		lblPhoneNo.setText("Mobile No :");
 
 		phNo = new Text(startdate, SWT.BORDER);
 		phNo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
@@ -168,22 +168,32 @@ public class AddMemberWizardPage extends WizardPage {
 		admittedBy = new Text(startdate, SWT.BORDER);
 		admittedBy.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
 				false, 1, 1));
-		new Label(startdate, SWT.NONE);
-		new Label(startdate, SWT.NONE);
-		// endDate.setText(dateTime.getDay());
+		admittedBy.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent e) {
+				// TODO Auto-generated method stub
+				validate();
+			}
+		});
+
+		setPageComplete(false);
 
 	}
 
 	private void validate() {
 		// TODO Auto-generated method stub
+
 		if (name.getText().equals("")) {
 			setErrorMessage("Enter Member name .");
 		} else if (address.getText().equals("")) {
 			setErrorMessage("Enter Address .");
 		} else if (phNo.getText().equals("")) {
-			setErrorMessage("Enter Phone Number .");
+			setErrorMessage("Enter Mobile Number .");
+		} else if (admittedBy.getText().equals("")) {
+			setErrorMessage("Enter Admitted By .");
 		} else {
 			setErrorMessage(null);
+			setPageComplete(true);
 		}
 
 	}

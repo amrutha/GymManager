@@ -39,7 +39,7 @@ public class AddMemberWizard extends Wizard {
 		// member.setPhotoStatus(page.getPhoto());
 		member.setCategory(page.getCategory());
 		member.setIdCardStatus(page.getStatus());
-		// member.setPhotoStatus(page.getPhoto());
+		 member.setAdmittedBy(page.getAdmittedBy());
 		String imageURL = page.getPhoto();
 
 		try {

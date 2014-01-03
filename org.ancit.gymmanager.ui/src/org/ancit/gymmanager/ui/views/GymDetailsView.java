@@ -142,9 +142,9 @@ public class GymDetailsView extends ViewPart implements PropertyChangeListener {
 					{
 						TableViewerColumn tableViewerColumn = new TableViewerColumn(
 								tableViewer, SWT.NONE);
-						TableColumn tblclmnPlan = tableViewerColumn.getColumn();
-						tblclmnPlan.setWidth(100);
-						tblclmnPlan.setText("Plan");
+						TableColumn tblclmnAdmittedBy = tableViewerColumn.getColumn();
+						tblclmnAdmittedBy.setWidth(100);
+						tblclmnAdmittedBy.setText("Admitted By");
 					}
 				}
 			}

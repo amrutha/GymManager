@@ -37,8 +37,8 @@ public class GymDetailsLabelProvider extends LabelProvider implements
 			// case 4: val =
 			// member.getLastPlanDetails().getEndDate().toString();
 			// break;
-			// case 5: val = member.getLastPlanDetails().getPlanType();
-			// break;
+			 case 5: val = member.getAdmittedBy();
+			 break;
 			default:
 				val = "Hello";
 				break;
