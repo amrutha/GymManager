@@ -1,5 +1,6 @@
 package org.ancit.gymmanager.ui.wizardpage;
 
+import org.ancit.gymmanager.model.Member;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -52,6 +53,8 @@ public class AddMemberWizardPage extends WizardPage {
 
 		id = new Text(startdate, SWT.BORDER);
 		id.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		Member member = new Member();
+		id.setText(member.getId());
 
 		Button btnAddPhoto = new Button(startdate, SWT.NONE);
 		btnAddPhoto.addSelectionListener(new SelectionAdapter() {

@@ -1,11 +1,8 @@
 package org.ancit.gymmanager.model;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import org.eclipse.swt.graphics.Image;
 
 public class Member extends SuperSaver {
 	/**
@@ -13,7 +10,7 @@ public class Member extends SuperSaver {
 	 */
 	private static final long serialVersionUID = -2911686179510229142L;
 
-	private String id;
+	private String id="MEM-";
 	private String name;
 	private String mobileNo;
 	private String category;
@@ -27,6 +24,8 @@ public class Member extends SuperSaver {
 	private String photoStatus;
 	List<PlanData> planDetails = new ArrayList<PlanData>();
 	PlanData lastPlanData = new PlanData();
+	private static int count =1;
+	private int memberId;
 	
 
 //	private String planType;
@@ -34,9 +33,14 @@ public class Member extends SuperSaver {
 //	private int billNo;
 //	private Date startDate;
 //	private Date endDate;
+	public Member() {
+		// TODO Auto-generated constructor stub
+		memberId = count ++;
+		
+	}
 
 	public String getId() {
-		return id;
+		return id+""+memberId;
 	}
 
 	public void setId(String id) {
