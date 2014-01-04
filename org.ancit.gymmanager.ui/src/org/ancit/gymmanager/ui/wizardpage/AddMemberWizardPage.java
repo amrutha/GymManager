@@ -64,6 +64,8 @@ public class AddMemberWizardPage extends WizardPage {
 				FileDialog fileDialog = new FileDialog(Display.getDefault()
 						.getActiveShell(), SWT.TITLE | SWT.OPEN);
 				fileDialog.setText("Upload Files");
+				fileDialog.setFilterNames(new String[]{"Images(*.jpg;*.jpeg;*.png;*.gif)"});
+				fileDialog.setFilterExtensions(new String[]{"*.jpg;*.jpeg;*.png;*.gif","*.png","*.gif","*.jpeg","*.jpg"});
 				// ((Object) fileDialog).setAutoUpload( true ); // This API will
 				// change, see below!
 				fileDialog.open();
@@ -86,13 +88,12 @@ public class AddMemberWizardPage extends WizardPage {
 
 		name = new Text(startdate, SWT.BORDER);
 		name.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		name.addModifyListener(new ModifyListener() {
-			@Override
+		ModifyListener modifyListener = new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
-				// TODO Auto-generated method stub
 				validate();
 			}
-		});
+		};
+		name.addModifyListener(modifyListener);
 
 		Label lblStatus = new Label(startdate, SWT.NONE);
 		lblStatus.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
@@ -114,13 +115,7 @@ public class AddMemberWizardPage extends WizardPage {
 		address = new Text(startdate, SWT.BORDER);
 		address.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
 				1, 1));
-		address.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent e) {
-				// TODO Auto-generated method stub
-				validate();
-			}
-		});
+		address.addModifyListener(modifyListener);
 
 		Label label = new Label(startdate, SWT.NONE);
 		label.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false,
@@ -141,13 +136,7 @@ public class AddMemberWizardPage extends WizardPage {
 
 		phNo = new Text(startdate, SWT.BORDER);
 		phNo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		phNo.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent e) {
-				// TODO Auto-generated method stub
-				validate();
-			}
-		});
+		phNo.addModifyListener(modifyListener);
 
 		Label label_1 = new Label(startdate, SWT.NONE);
 		label_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false,
@@ -168,20 +157,13 @@ public class AddMemberWizardPage extends WizardPage {
 		admittedBy = new Text(startdate, SWT.BORDER);
 		admittedBy.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
 				false, 1, 1));
-		admittedBy.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent e) {
-				// TODO Auto-generated method stub
-				validate();
-			}
-		});
+		admittedBy.addModifyListener(modifyListener);
 
 		setPageComplete(false);
 
 	}
 
 	private void validate() {
-		// TODO Auto-generated method stub
 
 		if (name.getText().equals("")) {
 			setErrorMessage("Enter Member name .");

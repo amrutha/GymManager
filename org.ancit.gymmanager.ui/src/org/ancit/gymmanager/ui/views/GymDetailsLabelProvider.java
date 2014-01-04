@@ -17,7 +17,7 @@ public class GymDetailsLabelProvider extends LabelProvider implements
 	@Override
 	public String getColumnText(Object element, int columnIndex) {
 		// TODO Auto-generated method stub
-		String val = "AAA";
+		String val = "N/A";
 
 		if (element instanceof Member) {
 			Member member = (Member) element;
@@ -31,13 +31,17 @@ public class GymDetailsLabelProvider extends LabelProvider implements
 			case 2:
 				val = member.getMobileNo();
 				break;
-			// case 3: val =
-			// member.getLastPlanDetails().getStartDate().toString();
-			// break;
-			// case 4: val =
-			// member.getLastPlanDetails().getEndDate().toString();
-			// break;
-			 case 5: val = member.getAdmittedBy();
+			 case 3: if(member.getLastPlanDetails().getStartDate()!=null ){
+							val = member.getLastPlanDetails().getStartDate().toString();
+					 }
+			 break;
+			 case 4: if(member.getLastPlanDetails().getEndDate()!=null ){
+						val = member.getLastPlanDetails().getEndDate().toString();
+			 		 }
+			 break;
+			 case 5: if(member.getLastPlanDetails().getPlanType()!=null){ 
+				 		val = member.getLastPlanDetails().getPlanType();
+			 		 }
 			 break;
 			default:
 				val = "Hello";
