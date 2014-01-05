@@ -1,6 +1,7 @@
 package org.ancit.gymmanager.ui.wizardpage;
 
 import org.ancit.gymmanager.model.Member;
+import org.ancit.gymmanager.model.PlanData;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -33,8 +34,8 @@ public class AddMemberWizardPage extends WizardPage {
 	 */
 	public AddMemberWizardPage() {
 		super("wizardPage");
-		setTitle("Wizard Page title");
-		setDescription("Wizard Page description");
+		setTitle("Adds New Member to Gym");
+		setDescription("This wizard is used to add New Member to your Gym.");
 	}
 
 	/**
@@ -51,7 +52,7 @@ public class AddMemberWizardPage extends WizardPage {
 		Label lblCustomerId = new Label(startdate, SWT.NONE);
 		lblCustomerId.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
 				false, 1, 1));
-		lblCustomerId.setText("Customer Id :");
+		lblCustomerId.setText("Member Id :");
 
 		id = new Text(startdate, SWT.BORDER | SWT.READ_ONLY);
 		id.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
@@ -59,15 +60,14 @@ public class AddMemberWizardPage extends WizardPage {
 
 		Button btnAddPhoto = new Button(startdate, SWT.NONE);
 		btnAddPhoto.addSelectionListener(new SelectionAdapter() {
-			@Override
 			public void widgetSelected(SelectionEvent e) {
 				FileDialog fileDialog = new FileDialog(Display.getDefault()
 						.getActiveShell(), SWT.TITLE | SWT.OPEN);
 				fileDialog.setText("Upload Files");
-				fileDialog.setFilterNames(new String[]{"Images(*.jpg;*.jpeg;*.png;*.gif)"});
-				fileDialog.setFilterExtensions(new String[]{"*.jpg;*.jpeg;*.png;*.gif","*.png","*.gif","*.jpeg","*.jpg"});
-				// ((Object) fileDialog).setAutoUpload( true ); // This API will
-				// change, see below!
+				fileDialog
+						.setFilterNames(new String[] { "Images(*.jpg;*.jpeg;*.png;*.gif)" });
+				fileDialog
+						.setFilterExtensions(new String[] { "*.jpg;*.jpeg;*.png;*.gif" });
 				fileDialog.open();
 				fileName = fileDialog.getFilterPath()
 						+ System.getProperty("file.separator")
@@ -84,7 +84,7 @@ public class AddMemberWizardPage extends WizardPage {
 		Label lblCustomerName = new Label(startdate, SWT.NONE);
 		lblCustomerName.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER,
 				false, false, 1, 1));
-		lblCustomerName.setText("Customer Name :");
+		lblCustomerName.setText("Member Name :");
 
 		name = new Text(startdate, SWT.BORDER);
 		name.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
@@ -103,7 +103,8 @@ public class AddMemberWizardPage extends WizardPage {
 		status = new Combo(startdate, SWT.READ_ONLY);
 		status.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1,
 				1));
-		String[] memberStatus = { "Active", "In-Active" };
+		String[] memberStatus = { PlanData.ACTIVE_STATUS,
+				PlanData.INACTIVE_STATUS };
 		status.setItems(memberStatus);
 		status.select(0);
 
@@ -123,8 +124,9 @@ public class AddMemberWizardPage extends WizardPage {
 		label.setText("Plan :");
 
 		combo = new Combo(startdate, SWT.READ_ONLY);
-		combo.setItems(new String[] { "Monthly", "Quaterly", "Half Yearly",
-				"Yearly" });
+		combo.setItems(new String[] { PlanData.PLAN_TYPE_MONTHLY,
+				PlanData.PLAN_TYPE_QUARTERLY, PlanData.PLAN_TYPE_HALF_YEARLY,
+				PlanData.PLAN_TYPE_YEARLY });
 		combo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1,
 				1));
 		combo.select(0);
@@ -166,13 +168,13 @@ public class AddMemberWizardPage extends WizardPage {
 	private void validate() {
 
 		if (name.getText().equals("")) {
-			setErrorMessage("Enter Member name .");
+			setErrorMessage("Enter Member name.");
 		} else if (address.getText().equals("")) {
-			setErrorMessage("Enter Address .");
+			setErrorMessage("Enter Address.");
 		} else if (phNo.getText().equals("")) {
-			setErrorMessage("Enter Mobile Number .");
+			setErrorMessage("Enter Mobile Number.");
 		} else if (admittedBy.getText().equals("")) {
-			setErrorMessage("Enter Admitted By .");
+			setErrorMessage("Enter Admitted By.");
 		} else {
 			setErrorMessage(null);
 			setPageComplete(true);
