@@ -197,8 +197,7 @@ public class MemberDetailsView extends ViewPart implements ISelectionListener {
 				txtMobileno.setText(member.getMobileNo());
 				// txtBloodgroup.setText(member.getBloodGroup());
 				Image image = null;
-				System.out.println(member.getPhotoStatus());
-				if (member.getPhotoStatus()) {
+				if (member.getPhotoStatus() == true) {
 					image = new Image(Display.getDefault(),
 							System.getProperty("user.dir")
 									+ System.getProperty("file.separator")

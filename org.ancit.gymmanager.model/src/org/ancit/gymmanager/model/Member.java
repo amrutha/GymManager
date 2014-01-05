@@ -21,7 +21,7 @@ public class Member extends SuperSaver {
 	private String applicationStatus;
 	private String idCardStatus;
 	private Date registrationDate;
-	private boolean photoStatus;
+	private boolean photoStatus = false;
 	private String admittedBy;
 	List<PlanData> planDetails = new ArrayList<PlanData>();
 	PlanData lastPlanData = new PlanData();
@@ -149,7 +149,7 @@ public class Member extends SuperSaver {
 
 	public boolean getPhotoStatus() {
 		firePropertyChange("Member", null, this);
-		return false;
+		return photoStatus;
 	}
 
 	public void setPhotoStatus(boolean photoStatus) {
@@ -184,7 +184,6 @@ public class Member extends SuperSaver {
 	public void setAdmittedBy(String admittedBy) {
 		this.admittedBy = admittedBy;
 	}
-	
 
 	/*
 	 * public String getPlanType() { return planType; }
