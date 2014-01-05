@@ -175,7 +175,8 @@ public class AddMemberWizardPage extends WizardPage {
 			setErrorMessage("Enter Mobile Number.");
 		} else if (admittedBy.getText().equals("")) {
 			setErrorMessage("Enter Admitted By.");
-		} else {
+		} 
+		else {
 			setErrorMessage(null);
 			setPageComplete(true);
 		}

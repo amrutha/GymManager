@@ -31,18 +31,19 @@ public class GymDetailsLabelProvider extends LabelProvider implements
 			case 2:
 				val = member.getMobileNo();
 				break;
-			 case 3: if(member.getLastPlanDetails().getStartDate()!=null ){
-							val = member.getLastPlanDetails().getStartDate().toString();
-					 }
-			 break;
-			 case 4: if(member.getLastPlanDetails().getEndDate()!=null ){
-						val = member.getLastPlanDetails().getEndDate().toString();
-			 		 }
-			 break;
-			 case 5: if(member.getLastPlanDetails().getPlanType()!=null){ 
-				 		val = member.getLastPlanDetails().getPlanType();
-			 		 }
-			 break;
+			case 3:
+				if (member.getLastPlanDetails().getStartDate() != null) {
+					val = member.getLastPlanDetails().getStartDate().toString();
+				}
+				break;
+			case 4:
+				if (member.getLastPlanDetails().getEndDate() != null) {
+					val = member.getLastPlanDetails().getEndDate().toString();
+				}
+				break;
+			case 5:
+				val = member.getAdmittedBy();
+				break;
 			default:
 				val = "Hello";
 				break;

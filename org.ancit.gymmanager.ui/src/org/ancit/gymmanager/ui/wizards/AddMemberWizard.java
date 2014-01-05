@@ -5,9 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-
 import javax.imageio.ImageIO;
-
 import org.ancit.gymmanager.model.GymManager;
 import org.ancit.gymmanager.model.GymRecord;
 import org.ancit.gymmanager.model.Member;
@@ -44,24 +42,26 @@ public class AddMemberWizard extends Wizard {
 		member.setIdCardStatus(page.getStatus());
 		member.setAdmittedBy(page.getAdmittedBy());
 		String imageURL = page.getPhoto();
+		if (!imageURL.isEmpty()) {
+			try {
+				BufferedImage imageIO = ImageIO.read(new URL("file:///"
+						+ imageURL));
+				int type = imageIO.getType() == 0 ? BufferedImage.TYPE_INT_ARGB
+						: imageIO.getType();
 
-		try {
-			BufferedImage imageIO = ImageIO
-					.read(new URL("file:///" + imageURL));
-			int type = imageIO.getType() == 0 ? BufferedImage.TYPE_INT_ARGB
-					: imageIO.getType();
-
-			BufferedImage resizeImageJpg = resizeImage(imageIO, type);
-			ImageIO.write(
-					resizeImageJpg,
-					"png",
-					new File(System.getProperty("user.dir")
-							+ System.getProperty("file.separator") + "Images"
-							+ System.getProperty("file.separator")
-							+ page.getId() + "_" + page.getName() + ".jpg"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				BufferedImage resizeImageJpg = resizeImage(imageIO, type);
+				ImageIO.write(
+						resizeImageJpg,
+						"jpg",
+						new File(System.getProperty("user.dir")
+								+ System.getProperty("file.separator")
+								+ "Images"
+								+ System.getProperty("file.separator")
+								+ page.getId() + "_" + page.getName() + ".jpg"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		record.addMemberToGym(member);
 
