@@ -1,5 +1,6 @@
 package org.ancit.gymmanager.ui.wizards;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,6 +17,8 @@ import org.eclipse.jface.wizard.Wizard;
 public class AddMemberWizard extends Wizard {
 	AddMemberWizardPage page;
 	GymRecord record = GymManager.getGymManager().getRecord();
+	private static final int IMG_WIDTH = 200;
+	private static final int IMG_HEIGHT = 200;
 
 	public AddMemberWizard() {
 		setWindowTitle("New Wizard");
@@ -39,14 +42,18 @@ public class AddMemberWizard extends Wizard {
 		// member.setPhotoStatus(page.getPhoto());
 		member.setCategory(page.getCategory());
 		member.setIdCardStatus(page.getStatus());
-		 member.setAdmittedBy(page.getAdmittedBy());
+		member.setAdmittedBy(page.getAdmittedBy());
 		String imageURL = page.getPhoto();
 
 		try {
 			BufferedImage imageIO = ImageIO
 					.read(new URL("file:///" + imageURL));
+			int type = imageIO.getType() == 0 ? BufferedImage.TYPE_INT_ARGB
+					: imageIO.getType();
+
+			BufferedImage resizeImageJpg = resizeImage(imageIO, type);
 			ImageIO.write(
-					imageIO,
+					resizeImageJpg,
 					"png",
 					new File(System.getProperty("user.dir")
 							+ System.getProperty("file.separator") + "Images"
@@ -59,6 +66,17 @@ public class AddMemberWizard extends Wizard {
 		record.addMemberToGym(member);
 
 		return true;
+	}
+
+	private BufferedImage resizeImage(BufferedImage imageIO, int type) {
+		// TODO Auto-generated method stub
+		BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, IMG_HEIGHT,
+				type);
+		Graphics2D g = resizedImage.createGraphics();
+		g.drawImage(imageIO, 0, 0, IMG_WIDTH, IMG_HEIGHT, null);
+		g.dispose();
+
+		return resizedImage;
 	}
 
 }
