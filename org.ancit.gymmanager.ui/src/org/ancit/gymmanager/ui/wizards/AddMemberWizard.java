@@ -43,6 +43,7 @@ public class AddMemberWizard extends Wizard {
 		member.setAdmittedBy(page.getAdmittedBy());
 		String imageURL = page.getPhoto();
 		if (!imageURL.isEmpty()) {
+			member.setPhotoStatus(true);
 			try {
 				BufferedImage imageIO = ImageIO.read(new URL("file:///"
 						+ imageURL));

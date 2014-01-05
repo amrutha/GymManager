@@ -196,14 +196,17 @@ public class MemberDetailsView extends ViewPart implements ISelectionListener {
 				txtAddress.setText(member.getAddress());
 				txtMobileno.setText(member.getMobileNo());
 				// txtBloodgroup.setText(member.getBloodGroup());
-
-				Image image = new Image(Display.getDefault(),
-						System.getProperty("user.dir")
-								+ System.getProperty("file.separator")
-								+ "Images"
-								+ System.getProperty("file.separator")
-								+ member.getId() + "_" + member.getName()
-								+ ".jpg");
+				Image image = null;
+				System.out.println(member.getPhotoStatus());
+				if (member.getPhotoStatus()) {
+					image = new Image(Display.getDefault(),
+							System.getProperty("user.dir")
+									+ System.getProperty("file.separator")
+									+ "Images"
+									+ System.getProperty("file.separator")
+									+ member.getId() + "_" + member.getName()
+									+ ".jpg");
+				}
 
 				btnPhotoUnavailable.setImage(image);
 

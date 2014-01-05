@@ -221,4 +221,5 @@ public class AddMemberWizardPage extends WizardPage {
 		return photo.getText();
 	}
 
+
 }
