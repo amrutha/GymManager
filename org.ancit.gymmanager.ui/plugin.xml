@@ -41,6 +41,17 @@
                toolbarPath="additions">
          </action>
       </viewContribution>
+      <viewContribution
+            id="org.ancit.gymmanager.ui.views.MemberDetailsView1"
+            targetID="org.ancit.gymmanager.ui.views.MemberDetailsView">
+         <action
+               class="org.ancit.gymmanager.ui.actions.AddPlanDetailsAction"
+               id="org.ancit.gymmanager.ui.AddPlanDetailsAction"
+               label="Add Plan Details"
+               style="push"
+               toolbarPath="additions">
+         </action>
+      </viewContribution>
    </extension>
 
 </plugin>

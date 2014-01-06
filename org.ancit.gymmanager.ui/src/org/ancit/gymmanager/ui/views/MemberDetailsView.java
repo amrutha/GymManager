@@ -37,6 +37,7 @@ public class MemberDetailsView extends ViewPart implements ISelectionListener {
 	Button btnPhotoUnavailable;
 	private Table table;
 	private TableViewer planDataTableViewer;
+	private Member member;
 
 	public MemberDetailsView() {
 	}
@@ -242,7 +243,7 @@ public class MemberDetailsView extends ViewPart implements ISelectionListener {
 			IStructuredSelection strucSel = (IStructuredSelection) selection;
 			Object firstElement = strucSel.getFirstElement();
 			if (firstElement instanceof Member) {
-				Member member = (Member) firstElement;
+				member = (Member) firstElement;
 				// System.out.println(member.getName());
 				txtId.setText(member.getId());
 				txtName.setText(member.getName());
@@ -261,8 +262,13 @@ public class MemberDetailsView extends ViewPart implements ISelectionListener {
 				}
 
 				btnPhotoUnavailable.setImage(image);
-
+				planDataTableViewer.setInput(member);
 			}
 		}
+	}
+
+	public Member getMember() {
+		// TODO Auto-generated method stub
+		return member;
 	}
 }
