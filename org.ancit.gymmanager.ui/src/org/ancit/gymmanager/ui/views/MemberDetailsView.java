@@ -19,6 +19,10 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.part.ViewPart;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.jface.viewers.TableViewerColumn;
 
 public class MemberDetailsView extends ViewPart implements ISelectionListener {
 
@@ -31,6 +35,9 @@ public class MemberDetailsView extends ViewPart implements ISelectionListener {
 	private Text txtAddress;
 	private Text txtBloodgroup;
 	Button btnPhotoUnavailable;
+	private Table table;
+	private TableViewer planDataTableViewer;
+	private Member member;
 
 	public MemberDetailsView() {
 	}
@@ -171,6 +178,53 @@ public class MemberDetailsView extends ViewPart implements ISelectionListener {
 				formToolkit.adapt(composite_1);
 				formToolkit.paintBordersFor(composite_1);
 				sctnPlanDet.setClient(composite_1);
+				composite_1.setLayout(new GridLayout(1, false));
+				{
+					planDataTableViewer = new TableViewer(composite_1, SWT.BORDER | SWT.FULL_SELECTION);
+					table = planDataTableViewer.getTable();
+					table.setLinesVisible(true);
+					table.setHeaderVisible(true);
+					table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+					formToolkit.paintBordersFor(table);
+					{
+						TableViewerColumn tableViewerColumn = new TableViewerColumn(planDataTableViewer, SWT.NONE);
+						TableColumn tblclmnPlantype = tableViewerColumn.getColumn();
+						tblclmnPlantype.setWidth(86);
+						tblclmnPlantype.setText("PlanType");
+					}
+					{
+						TableViewerColumn tableViewerColumn = new TableViewerColumn(planDataTableViewer, SWT.NONE);
+						TableColumn tblclmnStartDate = tableViewerColumn.getColumn();
+						tblclmnStartDate.setWidth(100);
+						tblclmnStartDate.setText("Start Date");
+					}
+					{
+						TableViewerColumn tableViewerColumn = new TableViewerColumn(planDataTableViewer, SWT.NONE);
+						TableColumn tblclmnEndDate = tableViewerColumn.getColumn();
+						tblclmnEndDate.setWidth(100);
+						tblclmnEndDate.setText("End Date");
+					}
+					{
+						TableViewerColumn tableViewerColumn = new TableViewerColumn(planDataTableViewer, SWT.NONE);
+						TableColumn tblclmnstatus = tableViewerColumn.getColumn();
+						tblclmnstatus.setWidth(52);
+						tblclmnstatus.setText("Status");
+					}
+					{
+						TableViewerColumn tableViewerColumn = new TableViewerColumn(planDataTableViewer, SWT.NONE);
+						TableColumn tblclmnBillNo = tableViewerColumn.getColumn();
+						tblclmnBillNo.setWidth(60);
+						tblclmnBillNo.setText("Bill No");
+					}
+					{
+						TableViewerColumn tableViewerColumn = new TableViewerColumn(planDataTableViewer, SWT.NONE);
+						TableColumn tblclmnAmountPaid = tableViewerColumn.getColumn();
+						tblclmnAmountPaid.setWidth(100);
+						tblclmnAmountPaid.setText("Amount Paid");
+					}
+					planDataTableViewer.setContentProvider(new GymDetailsContentProvider());
+					planDataTableViewer.setLabelProvider(new MemberDetailsViewLabelProvider());
+				}
 			}
 		}
 
@@ -189,7 +243,7 @@ public class MemberDetailsView extends ViewPart implements ISelectionListener {
 			IStructuredSelection strucSel = (IStructuredSelection) selection;
 			Object firstElement = strucSel.getFirstElement();
 			if (firstElement instanceof Member) {
-				Member member = (Member) firstElement;
+				member = (Member) firstElement;
 				// System.out.println(member.getName());
 				txtId.setText(member.getId());
 				txtName.setText(member.getName());
@@ -208,8 +262,13 @@ public class MemberDetailsView extends ViewPart implements ISelectionListener {
 				}
 
 				btnPhotoUnavailable.setImage(image);
-
+				planDataTableViewer.setInput(member);
 			}
 		}
+	}
+
+	public Member getMember() {
+		// TODO Auto-generated method stub
+		return member;
 	}
 }

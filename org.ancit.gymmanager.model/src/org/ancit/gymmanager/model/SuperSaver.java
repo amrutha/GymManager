@@ -10,8 +10,8 @@ public class SuperSaver implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -5599700568137668276L;
-	public static final String ACTIVE_STATUS = "active";
-	public static final String INACTIVE_STATUS = "inActive";
+	public static final String ACTIVE_STATUS = "Active";
+	public static final String INACTIVE_STATUS = "InActive";
 	
 
 	PropertyChangeSupport listeners = new PropertyChangeSupport(this);

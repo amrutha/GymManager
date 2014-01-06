@@ -69,10 +69,12 @@ public class AddMemberWizardPage extends WizardPage {
 				fileDialog
 						.setFilterExtensions(new String[] { "*.jpg;*.jpeg;*.png;*.gif" });
 				fileDialog.open();
+				if(fileDialog.getFileName()!=null && !fileDialog.getFileName().isEmpty()){
 				fileName = fileDialog.getFilterPath()
 						+ System.getProperty("file.separator")
 						+ fileDialog.getFileName();
 				photo.setText(fileName);
+				}
 			}
 		});
 		btnAddPhoto.setText("Add Photo");
